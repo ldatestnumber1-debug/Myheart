@@ -1,11 +1,10 @@
-// Main application logic
+// Main app logic
 class LoveEternalApp {
     constructor() {
         this.setupEventListeners();
     }
     
     setupEventListeners() {
-        // Text update
         const updateBtn = document.getElementById('updateBtn');
         const textInput = document.getElementById('textInput');
         
@@ -16,13 +15,11 @@ class LoveEternalApp {
             }
         });
         
-        // Heart color change
         const heartColorInput = document.getElementById('heartColorInput');
         heartColorInput.addEventListener('change', (e) => {
             enhancedHeart.setHeartColor(e.target.value);
         });
         
-        // Rotation speed change
         const rotationSpeedInput = document.getElementById('rotationSpeed');
         const speedValue = document.getElementById('speedValue');
         
@@ -38,9 +35,8 @@ class LoveEternalApp {
         const newText = textInput.value.trim();
         
         if (newText.length > 0) {
-            spiralText.setText(newText);
+            spiralVortex.setText(newText);
             
-            // Vibration feedback
             if (navigator.vibrate) {
                 navigator.vibrate(100);
             }
@@ -50,7 +46,6 @@ class LoveEternalApp {
     }
 }
 
-// Initialize app when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         new LoveEternalApp();
@@ -59,15 +54,11 @@ if (document.readyState === 'loading') {
     new LoveEternalApp();
 }
 
-// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
-    // Reset text
     if (e.key === 'r' || e.key === 'R') {
-        document.getElementById('textInput').value = 'I believed Love Eternal em anh Trăng Trang yêu người bé Luôn chúc em';
-        spiralText.setText('I believed Love Eternal em anh Trăng Trang yêu người bé Luôn chúc em');
+        document.getElementById('textInput').value = 'I believed Love Eternal';
     }
     
-    // Speed up
     if (e.key === '+' || e.key === '=') {
         const speedInput = document.getElementById('rotationSpeed');
         const currentSpeed = parseFloat(speedInput.value);
@@ -79,7 +70,6 @@ document.addEventListener('keydown', (e) => {
         }
     }
     
-    // Slow down
     if (e.key === '-' || e.key === '_') {
         const speedInput = document.getElementById('rotationSpeed');
         const currentSpeed = parseFloat(speedInput.value);
