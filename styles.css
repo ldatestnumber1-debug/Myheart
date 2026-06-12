@@ -8,7 +8,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #000;
 }
 
@@ -21,7 +21,7 @@ canvas {
     height: 100%;
 }
 
-#nebulaCanvas {
+#galaxyCanvas {
     z-index: 1;
 }
 
@@ -29,11 +29,11 @@ canvas {
     z-index: 2;
 }
 
-#particlesCanvas {
+#textFlowCanvas {
     z-index: 3;
 }
 
-/* Container and Content */
+/* Container */
 .container {
     position: relative;
     z-index: 10;
@@ -46,50 +46,104 @@ canvas {
     pointer-events: none;
 }
 
-.content {
+/* Heart Container */
+.heart-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.heart-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.4) 0%, rgba(138, 43, 226, 0.2) 50%, transparent 100%);
+    animation: heartPulseGlow 2s ease-in-out infinite;
+    box-shadow: 
+        0 0 60px rgba(255, 20, 147, 0.6),
+        0 0 100px rgba(138, 43, 226, 0.4),
+        inset 0 0 60px rgba(255, 20, 147, 0.2);
+}
+
+.heart-title {
+    position: absolute;
+    z-index: 5;
     text-align: center;
     color: #fff;
-    text-shadow: 0 0 20px rgba(255, 20, 147, 0.8), 
-                 0 0 40px rgba(138, 43, 226, 0.6);
-    margin-top: 100px;
+    text-shadow: 
+        0 0 20px rgba(255, 20, 147, 1),
+        0 0 40px rgba(138, 43, 226, 0.8),
+        0 0 60px rgba(0, 255, 255, 0.5);
     pointer-events: none;
 }
 
-.title {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    animation: glow 3s ease-in-out infinite;
-    letter-spacing: 3px;
-}
-
-.subtitle {
-    font-size: 1.5rem;
-    color: #b0e0ff;
-    text-shadow: 0 0 15px rgba(176, 224, 255, 0.8);
-    animation: fadeInOut 4s ease-in-out infinite;
+.subtitle-top {
+    font-size: 2.5rem;
+    font-weight: 300;
     letter-spacing: 2px;
+    margin-bottom: 10px;
+    animation: glowText 2s ease-in-out infinite;
 }
 
-@keyframes glow {
+.subtitle-bottom {
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    animation: glowText 2s ease-in-out infinite 0.5s;
+}
+
+@keyframes heartPulseGlow {
     0%, 100% {
-        text-shadow: 0 0 20px rgba(255, 20, 147, 0.8), 
-                     0 0 40px rgba(138, 43, 226, 0.6);
+        box-shadow: 
+            0 0 60px rgba(255, 20, 147, 0.6),
+            0 0 100px rgba(138, 43, 226, 0.4),
+            inset 0 0 60px rgba(255, 20, 147, 0.2);
     }
     50% {
-        text-shadow: 0 0 30px rgba(255, 20, 147, 1), 
-                     0 0 60px rgba(138, 43, 226, 0.8),
-                     0 0 100px rgba(0, 255, 255, 0.5);
+        box-shadow: 
+            0 0 100px rgba(255, 20, 147, 0.9),
+            0 0 150px rgba(138, 43, 226, 0.6),
+            inset 0 0 80px rgba(255, 20, 147, 0.4);
     }
 }
 
-@keyframes fadeInOut {
+@keyframes glowText {
     0%, 100% {
-        opacity: 0.7;
+        text-shadow: 
+            0 0 20px rgba(255, 20, 147, 1),
+            0 0 40px rgba(138, 43, 226, 0.8),
+            0 0 60px rgba(0, 255, 255, 0.5);
+        opacity: 0.9;
     }
     50% {
+        text-shadow: 
+            0 0 30px rgba(255, 20, 147, 1),
+            0 0 60px rgba(138, 43, 226, 1),
+            0 0 100px rgba(0, 255, 255, 0.7);
         opacity: 1;
     }
+}
+
+/* Spiral Text Container */
+.spiral-text-container {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spiral-text {
+    position: relative;
+    width: 300px;
+    height: 150px;
 }
 
 /* Control Panel */
@@ -98,14 +152,15 @@ canvas {
     top: 20px;
     right: 20px;
     z-index: 100;
-    background: rgba(20, 20, 40, 0.85);
-    border: 2px solid rgba(255, 20, 147, 0.6);
+    background: rgba(20, 20, 40, 0.9);
+    border: 2px solid rgba(255, 20, 147, 0.8);
     border-radius: 15px;
     padding: 25px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(255, 20, 147, 0.4),
-                inset 0 0 30px rgba(138, 43, 226, 0.2);
-    max-width: 300px;
+    box-shadow: 
+        0 0 40px rgba(255, 20, 147, 0.5),
+        inset 0 0 30px rgba(138, 43, 226, 0.3);
+    max-width: 320px;
     pointer-events: all;
 }
 
@@ -124,16 +179,16 @@ canvas {
     color: #b0e0ff;
     font-weight: bold;
     font-size: 0.95rem;
-    text-shadow: 0 0 10px rgba(176, 224, 255, 0.5);
+    text-shadow: 0 0 10px rgba(176, 224, 255, 0.6);
     letter-spacing: 1px;
 }
 
 .control-group input[type="text"],
 .control-group input[type="color"] {
     padding: 10px 12px;
-    border: 1.5px solid rgba(255, 20, 147, 0.5);
+    border: 1.5px solid rgba(255, 20, 147, 0.6);
     border-radius: 8px;
-    background: rgba(10, 10, 30, 0.7);
+    background: rgba(10, 10, 30, 0.8);
     color: #fff;
     font-size: 0.95rem;
     transition: all 0.3s ease;
@@ -143,7 +198,7 @@ canvas {
 .control-group input[type="color"]:focus {
     outline: none;
     border-color: #ff1493;
-    box-shadow: 0 0 15px rgba(255, 20, 147, 0.6),
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.8),
                 inset 0 0 10px rgba(255, 20, 147, 0.2);
 }
 
@@ -156,7 +211,7 @@ canvas {
     width: 100%;
     height: 6px;
     border-radius: 3px;
-    background: rgba(138, 43, 226, 0.3);
+    background: rgba(138, 43, 226, 0.4);
     outline: none;
     -webkit-appearance: none;
     appearance: none;
@@ -171,13 +226,13 @@ canvas {
     border-radius: 50%;
     background: linear-gradient(135deg, #ff1493, #8a2be2);
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
+    box-shadow: 0 0 15px rgba(255, 20, 147, 1);
     transition: all 0.2s ease;
 }
 
 .control-group input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 20px rgba(255, 20, 147, 1);
+    transform: scale(1.3);
+    box-shadow: 0 0 25px rgba(255, 20, 147, 1);
 }
 
 .control-group input[type="range"]::-moz-range-thumb {
@@ -187,14 +242,14 @@ canvas {
     background: linear-gradient(135deg, #ff1493, #8a2be2);
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
+    box-shadow: 0 0 15px rgba(255, 20, 147, 1);
     transition: all 0.2s ease;
 }
 
 #speedValue {
     color: #ff1493;
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 20, 147, 0.6);
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
     font-size: 0.9rem;
 }
 
@@ -210,29 +265,35 @@ canvas {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
 }
 
 #updateBtn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(255, 20, 147, 0.8),
-                0 5px 15px rgba(138, 43, 226, 0.4);
+    box-shadow: 0 0 30px rgba(255, 20, 147, 1),
+                0 5px 15px rgba(138, 43, 226, 0.5);
 }
 
 #updateBtn:active {
     transform: translateY(0);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-    .title {
+    .heart-container {
+        width: 280px;
+        height: 280px;
+        margin-bottom: 30px;
+    }
+
+    .subtitle-top {
+        font-size: 1.8rem;
+    }
+
+    .subtitle-bottom {
         font-size: 2.5rem;
     }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-    
+
     .control-panel {
         top: 10px;
         right: 10px;
@@ -240,26 +301,23 @@ canvas {
         max-width: none;
         padding: 15px;
     }
-    
-    .control-group {
-        margin-bottom: 12px;
-    }
 }
 
 @media (max-width: 480px) {
-    .title {
+    .heart-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .subtitle-top {
+        font-size: 1.2rem;
+    }
+
+    .subtitle-bottom {
         font-size: 1.8rem;
     }
-    
-    .subtitle {
-        font-size: 0.85rem;
-    }
-    
+
     .control-panel {
         padding: 12px;
-    }
-    
-    .control-group label {
-        font-size: 0.85rem;
     }
 }

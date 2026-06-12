@@ -1,5 +1,5 @@
 // Main application logic
-class CosmicHeartApp {
+class LoveEternalApp {
     constructor() {
         this.setupEventListeners();
     }
@@ -19,7 +19,7 @@ class CosmicHeartApp {
         // Heart color change
         const heartColorInput = document.getElementById('heartColorInput');
         heartColorInput.addEventListener('change', (e) => {
-            starHeart.setHeartColor(e.target.value);
+            enhancedHeart.setHeartColor(e.target.value);
         });
         
         // Rotation speed change
@@ -28,7 +28,7 @@ class CosmicHeartApp {
         
         rotationSpeedInput.addEventListener('input', (e) => {
             const speed = parseFloat(e.target.value);
-            starHeart.setRotationSpeed(speed);
+            enhancedHeart.setRotationSpeed(speed);
             speedValue.textContent = speed.toFixed(1) + 'x';
         });
     }
@@ -38,9 +38,9 @@ class CosmicHeartApp {
         const newText = textInput.value.trim();
         
         if (newText.length > 0) {
-            textParticles.setText(newText);
+            spiralText.setText(newText);
             
-            // Vibration feedback if available
+            // Vibration feedback
             if (navigator.vibrate) {
                 navigator.vibrate(100);
             }
@@ -53,39 +53,39 @@ class CosmicHeartApp {
 // Initialize app when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        new CosmicHeartApp();
+        new LoveEternalApp();
     });
 } else {
-    new CosmicHeartApp();
+    new LoveEternalApp();
 }
 
-// Add keyboard shortcuts
+// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
-    // Press 'R' to reset text to default
+    // Reset text
     if (e.key === 'r' || e.key === 'R') {
-        document.getElementById('textInput').value = 'I LOVE YOU';
-        textParticles.setText('I LOVE YOU');
+        document.getElementById('textInput').value = 'I believed Love Eternal em anh Trăng Trang yêu người bé Luôn chúc em';
+        spiralText.setText('I believed Love Eternal em anh Trăng Trang yêu người bé Luôn chúc em');
     }
     
-    // Press '+' to increase rotation speed
+    // Speed up
     if (e.key === '+' || e.key === '=') {
         const speedInput = document.getElementById('rotationSpeed');
         const currentSpeed = parseFloat(speedInput.value);
         if (currentSpeed < 2) {
             speedInput.value = Math.min(currentSpeed + 0.1, 2);
-            starHeart.setRotationSpeed(parseFloat(speedInput.value));
+            enhancedHeart.setRotationSpeed(parseFloat(speedInput.value));
             document.getElementById('speedValue').textContent = 
                 parseFloat(speedInput.value).toFixed(1) + 'x';
         }
     }
     
-    // Press '-' to decrease rotation speed
+    // Slow down
     if (e.key === '-' || e.key === '_') {
         const speedInput = document.getElementById('rotationSpeed');
         const currentSpeed = parseFloat(speedInput.value);
         if (currentSpeed > 0.1) {
             speedInput.value = Math.max(currentSpeed - 0.1, 0.1);
-            starHeart.setRotationSpeed(parseFloat(speedInput.value));
+            enhancedHeart.setRotationSpeed(parseFloat(speedInput.value));
             document.getElementById('speedValue').textContent = 
                 parseFloat(speedInput.value).toFixed(1) + 'x';
         }
